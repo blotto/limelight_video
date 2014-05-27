@@ -199,6 +199,14 @@ class Limelight
     JSON.parse response.body
   end
 
+  def search(options={})
+    # http://api.video.limelight.com/rest/organizations/<org id>/media/search.{XML,JSON}
+    response = @client.get("#{@base_media_url}/media/search.json")
+    path = generate_encoded_path('get', "#{@base_media_url}/search.json", options)
+    response = @client.get(path)
+    JSON.parse response.body
+  end
+
   private
 
   def generate_encoded_path(method = 'get', path = @base_media_url, params = {}, host = @host)

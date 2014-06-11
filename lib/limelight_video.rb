@@ -40,6 +40,11 @@ class Limelight
     JSON.parse response.body
   end
 
+  def media_encodings(media_id)
+    response = @client.get("#{@base_media_url}/#{media_id}/encodings.json")
+    JSON.parse response.body
+  end
+
   def update_media(id, attributes)
     path = generate_encoded_path('put', "#{@base_media_url}/#{id}/properties")
     response = @client.put(path, attributes)

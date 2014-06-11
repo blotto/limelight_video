@@ -51,7 +51,7 @@ class Limelight
   def media_url_for(media_id, primary_use=:MobileH264)
     media_encodings = media_encodings media_id
     encoding = media_encodings['encodings'].select { |e| e['primary_use'] == primary_use.to_s }.first
-    return encoding.ni? ? nil :  encoding['url']
+    return encoding.nil? ? nil :  encoding['url']
   end
 
 

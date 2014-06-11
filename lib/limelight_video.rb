@@ -54,6 +54,13 @@ class Limelight
     return encoding.nil? ? nil :  encoding['url']
   end
 
+  #returns just a URL for a particular encoding, default presumes iOS/Android compatible encoding options
+  def media_encoding_for(media_id, primary_use=:MobileH264)
+    media_encodings = media_encodings media_id
+    encoding = media_encodings['encodings'].select { |e| e['primary_use'] == primary_use.to_s }.first
+    return encoding.nil? ? nil :  encoding
+  end
+
 
   def update_media(id, attributes)
     path = generate_encoded_path('put', "#{@base_media_url}/#{id}/properties")
